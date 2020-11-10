@@ -41,7 +41,7 @@ public class main {
 				num = Integer.parseInt(strNum);
 				System.out.println("차량 번호를 입력하세요! (4자리 숫자)");
 				strNum = in.nextLine();
-				if(strNum.length() > 4) {
+				if(strNum.length() != 4) {
 					System.out.println("차량번호는 4자리 입니다!");
 					break;
 				}
@@ -69,12 +69,27 @@ public class main {
 			case 2:
 				System.out.println("출차할 차량번호를 입력하세요!");
 				strNum = in.nextLine();
-				vehiNum = Integer.parseInt(strNum);
+				if(strNum.length() != 4) {
+					System.out.println("차량번호는 4자리 입니다!");
+					break;
+				}
+				try {
+					vehiNum = Integer.parseInt(strNum);
+				}catch(NumberFormatException e) {
+					System.out.println("올바른 차량번호를 입력하세요!");
+					break;
+				}
+				
 				System.out.println("출차시간을 입력하세요!");
 				date = in.nextLine();
-				SimpleDateFormat form = new SimpleDateFormat("yyyy MM dd HH mm");
-				Date to = form.parse(date);
-				p.findVehicleNum(vehicle, vehiNum, to);
+				try {
+					SimpleDateFormat form = new SimpleDateFormat("yyyy MM dd HH mm");
+					Date to = form.parse(date);
+					p.findVehicleNum(vehicle, vehiNum, to);
+					}catch(ParseException e) {
+						System.out.println("잘못된 날짜 입력 형식입니다!");
+						break;
+					}
 				break;
 			case 3:
 				p.CurParking(vehicle);
