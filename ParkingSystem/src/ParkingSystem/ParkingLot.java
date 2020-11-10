@@ -38,19 +38,19 @@ public	void CurParking(Vehicle[] vehi) {
 	public void printInfoCar(Vehicle car) {
 		SimpleDateFormat transform = new SimpleDateFormat("yyyy/MM/dd HH:mm");
 		if(car instanceof Car) {
-			System.out.printf("½Â¿ëÂ÷ %d %s\n", car.VehicleNum, transform.format(car.time.getinTime()));
+			System.out.printf("ìŠ¹ìš©ì°¨ %d %s\n", car.VehicleNum, transform.format(car.time.getinTime()));
 		}
 	}
 	public void printInfoTruc(Vehicle truc) {
 		SimpleDateFormat transform = new SimpleDateFormat("yyyy/MM/dd HH:mm");
 		if(truc instanceof Truc) {
-			System.out.printf("Æ®·° %d %s\n", truc.VehicleNum, transform.format(truc.time.getinTime()));
+			System.out.printf("íŠ¸ëŸ­ %d %s\n", truc.VehicleNum, transform.format(truc.time.getinTime()));
 		}
 	}
 	public void printInfoBus(Vehicle bus) {
 		SimpleDateFormat transform = new SimpleDateFormat("yyyy/MM/dd HH:mm");
 		if(bus instanceof Bus) {
-			System.out.printf("¹ö½º %d %s\n", bus.VehicleNum, transform.format(bus.time.getinTime()));
+			System.out.printf("ë²„ìŠ¤ %d %s\n", bus.VehicleNum, transform.format(bus.time.getinTime()));
 		}
 	}
 	
@@ -66,24 +66,24 @@ public	void CurParking(Vehicle[] vehi) {
 			}
 		}
 		if(isThere == 0) {
-			System.out.println("ÀÌ ¹øÈ£ÀÇ Â÷·®Àº µî·ÏµÇ¾î ÀÖÁö ¾Ê½À´Ï´Ù.");
+			System.out.println("ì´ ë²ˆí˜¸ì˜ ì°¨ëŸ‰ì€ ë“±ë¡ë˜ì–´ ìˆì§€ ì•ŠìŠµë‹ˆë‹¤.");
 			return;
 		}
 		if((date.getTime() - vehi[i].time.getinTime().getTime()) < 0) {
-			System.out.println("ÃâÂ÷½Ã°£Àº ÀÔÂ÷½Ã°£º¸´Ù ´ÊÀº ½Ã°£ÀÌ¾î¾ß ÇÕ´Ï´Ù!");
+			System.out.println("ì¶œì°¨ì‹œê°„ì€ ì…ì°¨ì‹œê°„ë³´ë‹¤ ëŠ¦ì€ ì‹œê°„ì´ì–´ì•¼ í•©ë‹ˆë‹¤!");
 			return;
 		}
 		vehi[i].outTime(date);
 		if(vehi[i] instanceof Car) {
-			System.out.printf("ÁÖÂ÷½Ã°£Àº %dºĞ ÀÔ´Ï´Ù.\n",vehi[i].time.getoutTime());
+			System.out.printf("ì£¼ì°¨ì‹œê°„ì€ %dë¶„ ì…ë‹ˆë‹¤.\n",vehi[i].time.getoutTime());
 		}
 		else if(vehi[i] instanceof Bus) {
-			System.out.printf("ÁÖÂ÷½Ã°£Àº %dºĞ ÀÔ´Ï´Ù.\n",vehi[i].time.getoutTime());
+			System.out.printf("ì£¼ì°¨ì‹œê°„ì€ %dë¶„ ì…ë‹ˆë‹¤.\n",vehi[i].time.getoutTime());
 		}
 		else if(vehi[i] instanceof Truc) {
-			System.out.printf("ÁÖÂ÷½Ã°£Àº %d½Ã°£ ÀÔ´Ï´Ù.\n",vehi[i].time.getoutTime());
+			System.out.printf("ì£¼ì°¨ì‹œê°„ì€ %dì‹œê°„ ì…ë‹ˆë‹¤.\n",vehi[i].time.getoutTime());
 		}
-		System.out.printf("ÁÖÂ÷¿ä±İÀº %d ¿øÀÔ´Ï´Ù.\n", vehi[i].calcFee());
+		System.out.printf("ì£¼ì°¨ìš”ê¸ˆì€ %d ì›ì…ë‹ˆë‹¤.\n", vehi[i].calcFee());
 		income += vehi[i].calcFee();
 		int delIndex = i;
 		for(i = delIndex; i<j-1; i++) {

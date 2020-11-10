@@ -7,10 +7,10 @@ import java.util.Date;
 import java.util.Scanner;
 public class main {
 	private static int i = 0;
-	public static void main(String[] args) throws ParseException{
+	public static void main(String[] args) throws Exception {
 		String strNum;
 		Scanner in = new Scanner(System.in);
-		System.out.printf("ÁÖÂ÷Àå¿¡ ÃÖ´ë ¸î ´ë¸¦ ÁÖÂ÷ÇÒ ¼ö ÀÖ½À´Ï±î? : ");
+		System.out.printf("ì£¼ì°¨ì¥ì— ìµœëŒ€ ëª‡ ëŒ€ë¥¼ ì£¼ì°¨í•  ìˆ˜ ìˆìŠµë‹ˆê¹Œ? : ");
 		strNum = in.nextLine();
 		int maxp = Integer.parseInt(strNum);
 		ParkingLot p = new ParkingLot(maxp);
@@ -23,38 +23,54 @@ public class main {
 		String date;
 		loop:
 		while(true) {
-			System.out.println("¿øÇÏ´Â ±â´ÉÀ» ¼±ÅÃÇÏ¼¼¿ä!");
-			System.out.printf("1. ÀÔÂ÷\n2. ÃâÂ÷\n3. ÁÖÂ÷Â÷·® º¸±â\n4. ÃÑ ¼öÀÔ º¸±â\n5. Á¾·á\n");
+			System.out.println("ì›í•˜ëŠ” ê¸°ëŠ¥ì„ ì„ íƒí•˜ì„¸ìš”!");
+			System.out.printf("1. ì…ì°¨\n2. ì¶œì°¨\n3. ì£¼ì°¨ì°¨ëŸ‰ ë³´ê¸°\n4. ì´ ìˆ˜ì… ë³´ê¸°\n5. ì¢…ë£Œ\n");
 			strNum = in.nextLine();
 			choice = Integer.parseInt(strNum);
 			switch(choice) {
-			case 1:			//ÀÔÂ÷
-				System.out.println("Â÷·® Á¾·ù¸¦ ÀÔ·ÂÇÏ¼¼¿ä! ½Â¿ëÂ÷(c), ¹ö½º(b), Æ®·°(t)");
+			case 1:			//ì…ì°¨
+				System.out.println("ì°¨ëŸ‰ ì¢…ë¥˜ë¥¼ ì…ë ¥í•˜ì„¸ìš”! ìŠ¹ìš©ì°¨(c), ë²„ìŠ¤(b), íŠ¸ëŸ­(t)");
 				strNum = in.nextLine();
 				typeOfvehicle = strNum.charAt(0);
 				if(!RightType(typeOfvehicle)) {
-					System.out.println("¿Ã¹Ù¸¥ Â÷·® Å¸ÀÔÀÌ ¾Æ´Õ´Ï´Ù!");
+					System.out.println("ì˜¬ë°”ë¥¸ ì°¨ëŸ‰ íƒ€ì…ì´ ì•„ë‹™ë‹ˆë‹¤!");
 					break;
 				}
-				System.out.println("¿ë·®À» ÀÔ·ÂÇÏ¼¼¿ä!  (Àü±âÂ÷ÀÇ ÃÖ´ë ¿ë·®Àº 60KWÀÌ¸ç ±× ÀÌ»ó ÀÔ·Â½Ã 60KW·Î ÀúÀåµË´Ï´Ù.)" );
+				System.out.println("ìš©ëŸ‰ì„ ì…ë ¥í•˜ì„¸ìš”!  (ì „ê¸°ì°¨ì˜ ìµœëŒ€ ìš©ëŸ‰ì€ 60KWì´ë©° ê·¸ ì´ìƒ ì…ë ¥ì‹œ 60KWë¡œ ì €ì¥ë©ë‹ˆë‹¤.)" );
 				strNum = in.nextLine();
 				num = Integer.parseInt(strNum);
-				System.out.println("Â÷·® ¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä! (4ÀÚ¸® ¼ıÀÚ)");
+				System.out.println("ì°¨ëŸ‰ ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì„¸ìš”! (4ìë¦¬ ìˆ«ì)");
 				strNum = in.nextLine();
-				vehiNum = Integer.parseInt(strNum);
-				if(p.existNum(vehicle, vehiNum)) {
-					System.out.println("ÀÌ¹Ì µî·ÏµÈ Â÷·®¹øÈ£ ÀÔ´Ï´Ù!");
+				if(strNum.length() > 4) {
+					System.out.println("ì°¨ëŸ‰ë²ˆí˜¸ëŠ” 4ìë¦¬ ì…ë‹ˆë‹¤!");
 					break;
 				}
-				System.out.println("ÀÔÂ÷½Ã°£À» ÀÔ·ÂÇÏ¼¼¿ä!");
+				try {
+					vehiNum = Integer.parseInt(strNum);
+				}catch(NumberFormatException e) {
+					System.out.println("ì˜¬ë°”ë¥¸ ì°¨ëŸ‰ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì„¸ìš”!");
+					break;
+				}
+				if(p.existNum(vehicle, vehiNum)) {
+					System.out.println("ì´ë¯¸ ë“±ë¡ëœ ì°¨ëŸ‰ë²ˆí˜¸ ì…ë‹ˆë‹¤!");
+					break;
+				}
+				System.out.println("ì…ì°¨ì‹œê°„ì„ ì…ë ¥í•˜ì„¸ìš”!");
 				date = in.nextLine();
-				insert(vehicle, typeOfvehicle, num, vehiNum, date);
+				try {
+				SimpleDateFormat fm = new SimpleDateFormat("yyyy MM dd HH mm");
+				Date to = fm.parse(date);
+				insert(vehicle, typeOfvehicle, num, vehiNum, to);
+				}catch(ParseException e) {
+					System.out.println("ì˜ëª»ëœ ë‚ ì§œ ì…ë ¥ í˜•ì‹ì…ë‹ˆë‹¤!");
+					break;
+				}
 				break;
 			case 2:
-				System.out.println("ÃâÂ÷ÇÒ Â÷·®¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä!");
+				System.out.println("ì¶œì°¨í•  ì°¨ëŸ‰ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì„¸ìš”!");
 				strNum = in.nextLine();
 				vehiNum = Integer.parseInt(strNum);
-				System.out.println("ÃâÂ÷½Ã°£À» ÀÔ·ÂÇÏ¼¼¿ä!");
+				System.out.println("ì¶œì°¨ì‹œê°„ì„ ì…ë ¥í•˜ì„¸ìš”!");
 				date = in.nextLine();
 				SimpleDateFormat form = new SimpleDateFormat("yyyy MM dd HH mm");
 				Date to = form.parse(date);
@@ -66,22 +82,21 @@ public class main {
 			case 4:
 				int total = p.TotalIncome();
 				String str = String.format("%,d", total);
-				System.out.printf("ÃÑ ¼öÀÔÀº %s¿ø ÀÔ´Ï´Ù\n", str);
+				System.out.printf("ì´ ìˆ˜ì…ì€ %sì› ì…ë‹ˆë‹¤\n", str);
 				break;
 			case 5:
-				System.out.println("Á¾·á ÇÕ´Ï´Ù.");
+				System.out.println("ì¢…ë£Œ í•©ë‹ˆë‹¤.");
 				break loop;
 			default :
-				System.out.println("Àß¸øµÈ ¸Ş´º ¹üÀ§ÀÔ´Ï´Ù.");
+				System.out.println("ì˜ëª»ëœ ë©”ë‰´ ë²”ìœ„ì…ë‹ˆë‹¤.");
 				break;
 			}
 		}
 
 	}
 	
-	private static void insert(Vehicle[] vehicle, char type, int num, int vehiNum, String date) throws ParseException {
-		SimpleDateFormat fm = new SimpleDateFormat("yyyy MM dd HH mm");
-		Date to = fm.parse(date);
+	private static void insert(Vehicle[] vehicle, char type, int num, int vehiNum, Date to) {
+		
 		if(type == 'c') {			//car
 			if(num == 0)
 				vehicle[i++] = new Car(vehiNum, to);
