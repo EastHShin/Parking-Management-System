@@ -20,19 +20,7 @@ public class ElecCar extends Car {
 	return chargeFee() + super.calcFee();
 	
 	}
-	@Override
-	public void outTime(Date time) {
-		double sub = (super.time.subTime(super.time.getinTime(), time)) / 60000;
-		concreteTime = sub;
-		int castSub;
-		if(sub <30.0)
-			castSub = 30;
-		else {
-			sub /= 10;
-			castSub = (int) (Math.ceil(sub)*10);
-		}
-		super.time.setoutTime(castSub);
-	}
+	
 	private int chargeFee() {
 		if(concreteTime == 0)
 			return 0;
