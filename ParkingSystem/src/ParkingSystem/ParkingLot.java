@@ -83,7 +83,8 @@ public	void CurParking(Vehicle[] vehi) {
 		else if(vehi[i] instanceof Truc) {
 			System.out.printf("주차시간은 %d시간 입니다.\n",vehi[i].time.getoutTime());
 		}
-		System.out.printf("주차요금은 %d 원입니다.\n", vehi[i].calcFee());
+		String fee = String.format("%,d", vehi[i].calcFee());
+		System.out.printf("주차요금은 %s 원입니다.\n", fee);
 		income += vehi[i].calcFee();
 		int delIndex = i;
 		for(i = delIndex; i<j-1; i++) {
